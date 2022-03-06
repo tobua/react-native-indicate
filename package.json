@@ -1,0 +1,70 @@
+{
+  "name": "react-native-indicate",
+  "description": "Enhanced ScrollView with elements indicating scrollable overflow.",
+  "version": "0.0.0-development",
+  "repository": "github:tobua/react-native-indicate",
+  "license": "MIT",
+  "author": "Matthias Giger",
+  "scripts": {
+    "test": "jest",
+    "watch": "cpx 'src/**/*' app/node_modules/react-native-indicate/src --watch",
+    "app": "node create-app.js"
+  },
+  "dependencies": {
+    "omit.js": "^2.0.2"
+  },
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "react-native",
+    "scroll",
+    "scrollview",
+    "overflow",
+    "indicate"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@react-native-community/eslint-config": "3.0.1",
+    "babel-jest": "^27.5.1",
+    "cpx": "^1.5.0",
+    "eslint": "^8.10.0",
+    "jest": "^27.5.1",
+    "metro-react-native-babel-preset": "^0.69.0",
+    "prettier": "^2.5.1",
+    "react": "^17.0.2",
+    "react-native": "^0.67.3",
+    "react-test-renderer": "^17.0.2",
+    "recursive-copy": "^2.0.14",
+    "rimraf": "^3.0.2"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100
+  },
+  "eslintConfig": {
+    "extends": "@react-native-community",
+    "rules": {
+      "semi": 0
+    }
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "react-native-indicate": "<rootDir>/src"
+    },
+    "preset": "react-native",
+    "testPathIgnorePatterns": [
+      "/app/"
+    ]
+  },
+  "engines": {
+    "node": ">= 14"
+  }
+}
