@@ -1,5 +1,6 @@
 node_modules
 package-lock.json
+dist
 app/**/*
 !app/App.js
 !app/black-gradient.png

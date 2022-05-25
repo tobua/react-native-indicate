@@ -9,7 +9,7 @@ test('README example renders correctly.', () => {
       <Text>Hello World</Text>
     </Indicate>
   )
-  const tree = rendered.toJSON()
+  const tree = rendered.toJSON() as any
 
   expect(tree.type).toEqual('RCTSafeAreaView')
 })

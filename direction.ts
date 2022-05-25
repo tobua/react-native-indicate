@@ -1,10 +1,6 @@
-// @flow
 import type { Direction } from './types'
 
-export const getDirectionFromBoolean = (
-  horizontal: ?boolean,
-  vertical: ?boolean
-): Direction => {
+export const getDirectionFromBoolean = (horizontal?: boolean, vertical?: boolean): Direction => {
   if (typeof horizontal === 'undefined' && typeof vertical === 'undefined') {
     return 'both'
   }

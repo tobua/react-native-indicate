@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: npm install
+      - run: npm install --legacy-peer-deps
+      - run: npm run build
       - name: 📱 Test
         run: npm test
       - name: 📢 Release

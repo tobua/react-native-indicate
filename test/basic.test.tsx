@@ -3,12 +3,11 @@ import { View, Text } from 'react-native'
 import renderer from 'react-test-renderer'
 import Indicate from 'react-native-indicate'
 
-const getChildren = (tree) =>
-  tree.children[0].children[0].children[0].children[0].children
+const getChildren = (tree: any) => tree.children[0].children[0].children[0].children[0].children
 
 test('Renders empty and without any options.', () => {
   const rendered = renderer.create(<Indicate />)
-  const tree = rendered.toJSON()
+  const tree = rendered.toJSON() as any
 
   expect(tree.type).toEqual('RCTSafeAreaView')
   // ScrollView plus right and bottom fade.
@@ -28,7 +27,7 @@ test('Renders inside a View.', () => {
       <Indicate />
     </View>
   )
-  const tree = rendered.toJSON()
+  const tree = rendered.toJSON() as any
 
   expect(tree.type).toEqual('View')
   expect(tree.children[0].type).toEqual('RCTSafeAreaView')

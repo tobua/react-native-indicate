@@ -6,80 +6,70 @@ import blackGradient from './black-gradient.png'
 export default () => (
   <ScrollView contentContainerStyle={styles.screen}>
     <Text style={styles.title}>Indicate</Text>
-    <Text style={styles.subtitle}>both directions</Text>
+    <Text style={styles.subtitle}>Horizontal & Vertical Scroll</Text>
     <Indicate wrapperStyle={styles.wrapper} style={styles.view}>
       <Text style={styles.first}>
-        Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa. Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.
+        Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum dolor
+        ipsum sit loret amo loremata disorato molutiso arepa. Lorem ipsum dolor ipsum sit loret amo
+        loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato
+        molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem
+        ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit
+        loret amo loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata
+        disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
+        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum
+        dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret
+        amo loremata disorato molutiso arepa.
       </Text>
     </Indicate>
-    <Text style={styles.subtitle}>horizontal</Text>
+    <Text style={styles.subtitle}>Horizontal Scroll Only</Text>
     <Indicate horizontal wrapperStyle={styles.wrapper} style={styles.view}>
       <Text style={styles.second}>
-        Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa. Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.
+        Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum dolor
+        ipsum sit loret amo loremata disorato molutiso arepa. Lorem ipsum dolor ipsum sit loret amo
+        loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato
+        molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem
+        ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit
+        loret amo loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata
+        disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
+        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum
+        dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret
+        amo loremata disorato molutiso arepa.
       </Text>
     </Indicate>
-    <Text style={styles.subtitle}>vertical</Text>
+    <Text style={styles.subtitle}>Vertical Scroll Only</Text>
     <Indicate vertical wrapperStyle={styles.wrapper} style={styles.view}>
       <Text style={styles.third}>
-        Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa. Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.
+        Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum dolor
+        ipsum sit loret amo loremata disorato molutiso arepa. Lorem ipsum dolor ipsum sit loret amo
+        loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato
+        molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem
+        ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit
+        loret amo loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata
+        disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
+        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum
+        dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret
+        amo loremata disorato molutiso arepa.
       </Text>
     </Indicate>
-    <Text style={styles.subtitle}>gradient and style</Text>
+    <Text style={styles.subtitle}>Configuration and Style</Text>
     <Indicate
+      appearanceOffset={2}
+      fadeWidth={40}
       wrapperStyle={styles.wrapper}
       style={[styles.view, styles.viewBorder]}
       gradient={blackGradient}
     >
       <Text style={styles.fourth}>
-        Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa. Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
-        arepa.
+        Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum dolor
+        ipsum sit loret amo loremata disorato molutiso arepa. Lorem ipsum dolor ipsum sit loret amo
+        loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato
+        molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem
+        ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit
+        loret amo loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata
+        disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso
+        arepa.Lorem ipsum dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum
+        dolor ipsum sit loret amo loremata disorato molutiso arepa.Lorem ipsum dolor ipsum sit loret
+        amo loremata disorato molutiso arepa.
       </Text>
     </Indicate>
     <Text style={styles.footer}>create-react-native-plugin</Text>

@@ -1,53 +1,58 @@
-// @flow
-import React, { useState } from 'react'
-import { StyleSheet, ScrollView, SafeAreaView } from 'react-native'
+import React, { ReactNode, useState } from 'react'
+import {
+  ScrollView,
+  SafeAreaView,
+  LayoutChangeEvent,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+  ScrollViewProps,
+  ImageSourcePropType,
+  StyleProp,
+  ViewStyle,
+} from 'react-native'
 import omit from 'omit.js'
-import type {
-  LayoutEvent,
-  ScrollEvent,
-} from 'react-native/Libraries/Types/CoreEventTypes'
-import type { Props as ScrollViewProps } from 'react-native/Libraries/Components/ScrollView/ScrollView'
 import { getDirectionFromBoolean } from './direction'
 import { Fade } from './Fade'
 import type { Direction, FadeType, View, Content } from './types'
 
 type Props = {
-  appearanceOffset: number,
-  fadeWidth: number,
-  horizontal: ?boolean,
-  vertical: ?boolean,
-  style: ?any,
-  innerViewStyle: ?any,
-  wrapperStyle: ?any,
-  contentContainerStyle: ?any,
-  gradient: ?any,
-  children: ?any,
+  appearanceOffset: number
+  fadeWidth: number
+  horizontal?: boolean
+  vertical?: boolean
+  style?: StyleProp<ViewStyle>
+  innerViewStyle?: StyleProp<ViewStyle>
+  wrapperStyle?: StyleProp<ViewStyle>
+  contentContainerStyle?: StyleProp<ViewStyle>
+  gradient?: string | ImageSourcePropType
+  children: ReactNode
 } & ScrollViewProps
 
-export type InputProps = {
-  appearanceOffset: number,
-  fadeWidth: number,
-  horizontal: ?boolean,
-  vertical: ?boolean,
-  style: ?any,
-  wrapperStyle: ?any,
-  contentContainerStyle: ?any,
-  gradient: ?any,
-  children: ?any,
+type InputProps = {
+  appearanceOffset?: number
+  fadeWidth?: number
+  horizontal?: boolean
+  vertical?: boolean
+  style?: StyleProp<ViewStyle>
+  innerViewStyle?: StyleProp<ViewStyle>
+  wrapperStyle?: StyleProp<ViewStyle>
+  contentContainerStyle?: StyleProp<ViewStyle>
+  gradient?: string | ImageSourcePropType
+  children: ReactNode
 } & ScrollViewProps
 
 type State = {
-  direction: Direction,
-  setDirection: (value: Direction) => void,
-  fade: FadeType,
-  setFade: (value: FadeType) => void,
-  view: View,
-  setView: (value: View) => void,
-  content: Content,
-  setContent: (value: Content) => void,
+  direction: Direction
+  setDirection: (value: Direction) => void
+  fade: FadeType
+  setFade: (value: FadeType) => void
+  view: View
+  setView: (value: View) => void
+  content: Content
+  setContent: (value: Content) => void
 }
 
-const handleLayout = (state, event: LayoutEvent) => {
+const handleLayout = (state: State, event: LayoutChangeEvent) => {
   const newFade = { ...state.fade }
   const newView = { ...state.view }
   const layout = event.nativeEvent.layout
@@ -74,22 +79,19 @@ const handleScroll = (
   props: Props,
   state: State,
   direction: Direction,
-  event: ScrollEvent
+  event: NativeSyntheticEvent<NativeScrollEvent>
 ) => {
   const newFade = { ...state.fade }
   const offset = event.nativeEvent.contentOffset
 
   if (direction === 'horizontal' || direction === 'both') {
-    newFade.right =
-      offset.x + state.view.width + props.appearanceOffset < state.content.width
+    newFade.right = offset.x + state.view.width + props.appearanceOffset < state.content.width
     newFade.left = offset.x > props.appearanceOffset
   }
 
   if (direction === 'vertical' || direction === 'both') {
     newFade.top = offset.y > props.appearanceOffset
-    newFade.bottom =
-      offset.y + state.view.height + props.appearanceOffset <
-      state.content.height
+    newFade.bottom = offset.y + state.view.height + props.appearanceOffset < state.content.height
   }
 
   state.setFade(newFade)
@@ -101,11 +103,6 @@ const handleContentSizeChange = (
   width: number,
   height: number
 ) => {
-  // Wait until layout handler called.
-  if (!state.view.width && !state.view.height) {
-    return
-  }
-
   const newContent = { ...state.content }
   const newFade = { ...state.fade }
 
@@ -140,13 +137,13 @@ const renderInnerScrollView = (
 
   return (
     <ScrollView
-      style={[styles.view, props.innerViewStyle]}
-      contentContainerStyle={[styles.container, props.contentContainerStyle]}
+      style={[props.innerViewStyle]}
+      contentContainerStyle={[props.contentContainerStyle]}
       onContentSizeChange={(width, height) =>
         handleContentSizeChange(state, 'vertical', width, height)
       }
       scrollEventThrottle={300}
-      onScroll={(event: ScrollEvent) =>
+      onScroll={(event: NativeSyntheticEvent<NativeScrollEvent>) =>
         handleScroll(props, state, 'vertical', event)
       }
       vertical={true}
@@ -211,13 +208,10 @@ export default (props: InputProps): any => {
   ])
 
   return (
-    <SafeAreaView style={[styles.wrapper, allProps.wrapperStyle]}>
+    <SafeAreaView style={[allProps.wrapperStyle]}>
       <ScrollView
-        style={[styles.view, allProps.style]}
-        contentContainerStyle={[
-          styles.container,
-          allProps.contentContainerStyle,
-        ]}
+        style={[allProps.style]}
+        contentContainerStyle={[allProps.contentContainerStyle]}
         onContentSizeChange={(width, height) =>
           handleContentSizeChange(
             state,
@@ -227,55 +221,20 @@ export default (props: InputProps): any => {
           )
         }
         scrollEventThrottle={300}
-        onScroll={(event: ScrollEvent) =>
-          handleScroll(
-            allProps,
-            state,
-            direction === 'both' ? 'horizontal' : direction,
-            event
-          )
+        onScroll={(event: NativeSyntheticEvent<NativeScrollEvent>) =>
+          handleScroll(allProps, state, direction === 'both' ? 'horizontal' : direction, event)
         }
-        onLayout={(event: LayoutEvent) => handleLayout(state, event)}
+        onLayout={(event: LayoutChangeEvent) => handleLayout(state, event)}
         horizontal={direction === 'both' || direction === 'horizontal'}
         // All additional Indicate props will be passed to the ScrollView element.
         {...viewCompatibleProps}
       >
         {renderInnerScrollView(viewCompatibleProps, allProps, state, direction)}
       </ScrollView>
-      <Fade
-        side="top"
-        show={fade.top}
-        width={fadeWidth}
-        view={view}
-        gradient={gradient}
-      />
-      <Fade
-        side="right"
-        show={fade.right}
-        width={fadeWidth}
-        view={view}
-        gradient={gradient}
-      />
-      <Fade
-        side="bottom"
-        show={fade.bottom}
-        width={fadeWidth}
-        view={view}
-        gradient={gradient}
-      />
-      <Fade
-        side="left"
-        show={fade.left}
-        width={fadeWidth}
-        view={view}
-        gradient={gradient}
-      />
+      <Fade side="top" show={fade.top} width={fadeWidth} view={view} gradient={gradient} />
+      <Fade side="right" show={fade.right} width={fadeWidth} view={view} gradient={gradient} />
+      <Fade side="bottom" show={fade.bottom} width={fadeWidth} view={view} gradient={gradient} />
+      <Fade side="left" show={fade.left} width={fadeWidth} view={view} gradient={gradient} />
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  wrapper: {},
-  view: {},
-  container: {},
-})
