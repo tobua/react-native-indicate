@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, ImageBackground, ImageSourcePropType } from 'react-native'
+// Image will be inlined by esbuild.
 import defaultGradient from './gradient.png'
 
 type Dimensions = { width: number; height: number }

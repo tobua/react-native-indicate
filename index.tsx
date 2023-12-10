@@ -1,55 +1,22 @@
-import React, { ReactNode, useState } from 'react'
+import React, { useState } from 'react'
 import {
   ScrollView,
   SafeAreaView,
   LayoutChangeEvent,
   NativeSyntheticEvent,
   NativeScrollEvent,
-  ScrollViewProps,
-  ImageSourcePropType,
-  StyleProp,
-  ViewStyle,
 } from 'react-native'
-import omit from 'omit.js'
 import { getDirectionFromBoolean } from './direction'
 import { Fade } from './Fade'
-import type { Direction, FadeType, View, Content } from './types'
+import type { Direction, FadeType, View, Content, Props, State, InputProps } from './types'
 
-type Props = {
-  appearanceOffset: number
-  fadeWidth: number
-  horizontal?: boolean
-  vertical?: boolean
-  style?: StyleProp<ViewStyle>
-  innerViewStyle?: StyleProp<ViewStyle>
-  wrapperStyle?: StyleProp<ViewStyle>
-  contentContainerStyle?: StyleProp<ViewStyle>
-  gradient?: string | ImageSourcePropType
-  children: ReactNode
-} & ScrollViewProps
-
-type InputProps = {
-  appearanceOffset?: number
-  fadeWidth?: number
-  horizontal?: boolean
-  vertical?: boolean
-  style?: StyleProp<ViewStyle>
-  innerViewStyle?: StyleProp<ViewStyle>
-  wrapperStyle?: StyleProp<ViewStyle>
-  contentContainerStyle?: StyleProp<ViewStyle>
-  gradient?: string | ImageSourcePropType
-  children: ReactNode
-} & ScrollViewProps
-
-type State = {
-  direction: Direction
-  setDirection: (value: Direction) => void
-  fade: FadeType
-  setFade: (value: FadeType) => void
-  view: View
-  setView: (value: View) => void
-  content: Content
-  setContent: (value: Content) => void
+function omit<T extends object>(input: T, fields: (keyof T)[]) {
+  const shallowCopy = Object.assign({}, input)
+  for (let i = 0; i < fields.length; i += 1) {
+    const key = fields[i]
+    delete shallowCopy[key]
+  }
+  return shallowCopy
 }
 
 const handleLayout = (state: State, event: LayoutChangeEvent) => {
@@ -79,7 +46,7 @@ const handleScroll = (
   props: Props,
   state: State,
   direction: Direction,
-  event: NativeSyntheticEvent<NativeScrollEvent>
+  event: NativeSyntheticEvent<NativeScrollEvent>,
 ) => {
   const newFade = { ...state.fade }
   const offset = event.nativeEvent.contentOffset
@@ -101,7 +68,7 @@ const handleContentSizeChange = (
   state: State,
   direction: Direction,
   width: number,
-  height: number
+  height: number,
 ) => {
   const newContent = { ...state.content }
   const newFade = { ...state.fade }
@@ -129,7 +96,7 @@ const renderInnerScrollView = (
   viewCompatibleProps: any,
   props: Props,
   state: State,
-  direction: Direction
+  direction: Direction,
 ) => {
   if (direction !== 'both') {
     return props.children
@@ -176,7 +143,7 @@ export default (props: InputProps): any => {
 
   // Scroll directions (horizontal, vertical or both).
   const [direction, setDirection] = useState<Direction>(
-    getDirectionFromBoolean(horizontal, vertical)
+    getDirectionFromBoolean(horizontal, vertical),
   )
   // Which fade elements are currently active.
   const [fade, setFade] = useState<FadeType>({
@@ -217,7 +184,7 @@ export default (props: InputProps): any => {
             state,
             direction === 'both' ? 'horizontal' : direction,
             width,
-            height
+            height,
           )
         }
         scrollEventThrottle={300}

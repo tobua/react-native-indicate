@@ -1,6 +1,7 @@
 node_modules
 package-lock.json
 dist
+IndicateApp
 app/**/*
-!app/App.js
+!app/App.tsx
 !app/black-gradient.png

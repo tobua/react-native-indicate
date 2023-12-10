@@ -7,7 +7,7 @@ test('README example renders correctly.', () => {
   const rendered = renderer.create(
     <Indicate>
       <Text>Hello World</Text>
-    </Indicate>
+    </Indicate>,
   )
   const tree = rendered.toJSON() as any
 

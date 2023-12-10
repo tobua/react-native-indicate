@@ -6,7 +6,11 @@ import Indicate from 'react-native-indicate'
 const getChildren = (tree: any) => tree.children[0].children[0].children[0].children[0].children
 
 test('Renders empty and without any options.', () => {
-  const rendered = renderer.create(<Indicate />)
+  const rendered = renderer.create(
+    <Indicate>
+      <View />
+    </Indicate>,
+  )
   const tree = rendered.toJSON() as any
 
   expect(tree.type).toEqual('RCTSafeAreaView')
@@ -17,15 +21,18 @@ test('Renders empty and without any options.', () => {
   expect(tree.children[0].props.horizontal).toEqual(true)
   expect(tree.children[0].children[0].children[0].type).toEqual('RCTScrollView')
   expect(tree.children[0].children[0].children[0].props.vertical).toEqual(true)
-  // Doesn't contain any children.
-  expect(getChildren(tree)).toEqual(null)
+  // Contains single View as children.
+  expect(getChildren(tree).length).toBe(1)
+  expect(getChildren(tree)[0].type).toBe('View')
 })
 
 test('Renders inside a View.', () => {
   const rendered = renderer.create(
     <View>
-      <Indicate />
-    </View>
+      <Indicate>
+        <View />
+      </Indicate>
+    </View>,
   )
   const tree = rendered.toJSON() as any
 
@@ -37,7 +44,7 @@ test('Renders with a Text component inside.', () => {
   const rendered = renderer.create(
     <Indicate>
       <Text>Hello World</Text>
-    </Indicate>
+    </Indicate>,
   )
   const tree = rendered.toJSON()
 
@@ -49,7 +56,7 @@ test('Renders with a View component inside.', () => {
   const rendered = renderer.create(
     <Indicate>
       <View />
-    </Indicate>
+    </Indicate>,
   )
   const tree = rendered.toJSON()
 
